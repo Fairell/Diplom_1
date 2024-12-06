@@ -1,17 +1,29 @@
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import praktikum.IngredientType;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class IngredientTypeTest {
 
-    @Test
-    public void shouldContainSauceAsFirstElement() {
-        assertEquals("First element SAUCE", IngredientType.SAUCE, IngredientType.values()[0]);
+    @Parameterized.Parameter()
+    public int index;
+
+    @Parameterized.Parameter(1)
+    public IngredientType expected;
+
+    @Parameterized.Parameters(name = "Ingredients: {0}, Expected Price: {1}")
+    public static Object[][] data() {
+        return new Object[][]{
+                {0, IngredientType.SAUCE},
+                {1, IngredientType.FILLING}
+        };
     }
 
     @Test
-    public void shouldContainFillingAsSecondElement() {
-        assertEquals("Second element FILLING", IngredientType.FILLING, IngredientType.values()[1]);
+    public void shouldHaveCorrectOrder() {
+        assertEquals("Порядок элементов не совпадает", expected, IngredientType.values()[index]);
     }
 }
