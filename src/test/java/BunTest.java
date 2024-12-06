@@ -4,6 +4,8 @@ import praktikum.Bun;
 
 public class BunTest {
 
+    private static final double DELTA = 0.001;
+
     @Test
     public void shouldReturnCorrectName() {
         Bun bun = new Bun("test bun", 50);
@@ -13,6 +15,6 @@ public class BunTest {
     @Test
     public void shouldReturnCorrectPrice() {
         Bun bun = new Bun("test bun", 50);
-        assertEquals(50, bun.getPrice(), 0.001);
+        assertEquals(50, bun.getPrice(), DELTA);
     }
 }
